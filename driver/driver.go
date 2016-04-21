@@ -5,7 +5,7 @@ import (
 	"fmt"
 	neturl "net/url" // alias to allow `url string` func signature in New
 
-	"github.com/mattes/migrate/file"
+	"github.com/gemnasium/migrate/file"
 )
 
 // Driver is the interface type that needs to implemented by all drivers.
@@ -31,7 +31,10 @@ type Driver interface {
 	Migrate(file file.File, pipe chan interface{})
 
 	// Version returns the current migration version.
-	Version() (uint64, error)
+	Version() (file.Version, error)
+
+	// Versions returns the list of applied migrations
+	Versions() (file.Versions, error)
 }
 
 // New returns Driver and calls Initialize on it

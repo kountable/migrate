@@ -2,8 +2,8 @@
 package bash
 
 import (
-	"github.com/mattes/migrate/driver"
-	"github.com/mattes/migrate/file"
+	"github.com/gemnasium/migrate/driver"
+	"github.com/gemnasium/migrate/file"
 )
 
 type Driver struct {
@@ -27,8 +27,12 @@ func (driver *Driver) Migrate(f file.File, pipe chan interface{}) {
 	return
 }
 
-func (driver *Driver) Version() (uint64, error) {
-	return uint64(0), nil
+func (driver *Driver) Version() (file.Version, error) {
+	return file.Version(0), nil
+}
+
+func (driver *Driver) Versions() (file.Versions, error) {
+	return file.Versions{0}, nil
 }
 
 func init() {
